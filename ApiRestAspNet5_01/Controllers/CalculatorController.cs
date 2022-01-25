@@ -6,15 +6,15 @@ using System.Globalization;
 namespace ApiRestAspNet5_01.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CalculatorController : ControllerBase
     {
-        private readonly ILogger<CalculatorController> _logger;
+        //private readonly ILogger<CalculatorController> _logger;
 
-        public CalculatorController(ILogger<CalculatorController> logger)
-        {
-            _logger = logger;
-        }
+        //public CalculatorController(ILogger<CalculatorController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         [HttpGet("sum/{firstNumber}/{secondNumber}")]
         public IActionResult Get(string firstNumber, string secondNumber)
@@ -32,7 +32,7 @@ namespace ApiRestAspNet5_01.Controllers
         {
             if (IsNumeric(number))
             {
-                var sqrt = Math.Sqrt(ConvertToDouble(number));
+                var sqrt = Math.Sqrt((double)ConvertToDecimal(number)); //DownCasting
                 return Ok(sqrt.ToString());
             }
             return BadRequest("Ivalid input!");

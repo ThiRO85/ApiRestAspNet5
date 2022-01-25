@@ -1,3 +1,4 @@
+using ApiRestAspNet5_01.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ namespace ApiRestAspNet5_01
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IPersonService, PersonServiceImplementation>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
