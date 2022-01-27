@@ -8,12 +8,12 @@ namespace ApiRestAspNet5_01.Controllers
     [ApiVersion("1")]
     [ApiController]
     [Route("api/[controller]/v{version:apiVersion}")]
-    public class PersonController : ControllerBase
+    public class PersonsController : ControllerBase
     {
-        private readonly ILogger<PersonController> _logger;
+        private readonly ILogger<PersonsController> _logger;
         private IPersonService _personService;
 
-        public PersonController(ILogger<PersonController> logger, IPersonService personService)
+        public PersonsController(ILogger<PersonsController> logger, IPersonService personService)
         {
             _logger = logger;
             _personService = personService;

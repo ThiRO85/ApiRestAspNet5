@@ -7,7 +7,7 @@ namespace ApiRestAspNet5_01.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CalculatorController : ControllerBase
+    public class CalculatorsController : ControllerBase
     {
         //private readonly ILogger<CalculatorController> _logger;
 

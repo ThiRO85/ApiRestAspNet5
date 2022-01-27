@@ -1,4 +1,5 @@
 using ApiRestAspNet5_01.Context;
+using ApiRestAspNet5_01.Repository.Implementations;
 using ApiRestAspNet5_01.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,8 +30,10 @@ namespace ApiRestAspNet5_01
             services.AddApiVersioning();
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
-
             services.AddScoped<IPersonService, PersonServiceImplementation>();
+            services.AddScoped<IBookService, BookServiceImplementation>();
+            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
+            services.AddScoped<IBookRepository, BookRepositoryImplementation>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
