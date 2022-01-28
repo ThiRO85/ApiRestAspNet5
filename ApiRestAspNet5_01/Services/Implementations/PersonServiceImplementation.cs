@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ApiRestAspNet5_01.Model;
+using ApiRestAspNet5_01.Repositories.Generics;
 using ApiRestAspNet5_01.Repository.Implementations;
 
 namespace ApiRestAspNet5_01.Services.Implementations
@@ -7,9 +8,9 @@ namespace ApiRestAspNet5_01.Services.Implementations
     public class PersonServiceImplementation : IPersonService
     {
         //private volatile int count;
-        private readonly IPersonRepository _repository;
+        private readonly IRepository<Person> _repository;
 
-        public PersonServiceImplementation(IPersonRepository repository)
+        public PersonServiceImplementation(IRepository<Person> repository)
         {
             _repository = repository;
         }

@@ -1,4 +1,5 @@
 ﻿using ApiRestAspNet5_01.Model;
+using ApiRestAspNet5_01.Repositories.Generics;
 using ApiRestAspNet5_01.Repository.Implementations;
 using System.Collections.Generic;
 
@@ -6,9 +7,9 @@ namespace ApiRestAspNet5_01.Services.Implementations
 {
     public class BookServiceImplementation : IBookService
     {
-        private readonly IBookRepository _repository;
+        private readonly IRepository<Book> _repository;
 
-        public BookServiceImplementation(IBookRepository repository)
+        public BookServiceImplementation(IRepository<Book> repository)
         {
             _repository = repository;
         }

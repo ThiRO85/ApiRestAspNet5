@@ -1,13 +1,11 @@
-﻿using System;
+﻿using ApiRestAspNet5_01.Models.Base;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ApiRestAspNet5_01.Model
 {
-    public class Book
+    public class Book : BaseEntity
     {
-        [Required]
-        public long Id { get; set; }
-
         [MaxLength(50)]
         public string Title { get; set; }
 

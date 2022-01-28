@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ApiRestAspNet5_01.Models.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace ApiRestAspNet5_01.Model
 {
-    public class Person
+    public class Person : BaseEntity
     {
-        [Required]
-        public long Id { get; set; }
-
         [MaxLength(50)]
         public string FirstName { get; set; }
 
