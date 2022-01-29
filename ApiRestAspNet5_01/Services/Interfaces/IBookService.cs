@@ -1,14 +1,15 @@
-﻿using ApiRestAspNet5_01.Model;
+﻿using ApiRestAspNet5_01.Data.VO;
+using ApiRestAspNet5_01.Model;
 using System.Collections.Generic;
 
 namespace ApiRestAspNet5_01.Services.Implementations
 {
     public interface IBookService
     {
-        Book Create(Book book);
-        Book FindById(long id);
-        List<Book> FindAll();
-        Book Update(Book book);
+        BookVO Create(BookVO book);
+        BookVO FindById(long id);
+        List<BookVO> FindAll();
+        BookVO Update(BookVO book);
         void Delete(long id);
     }
 }

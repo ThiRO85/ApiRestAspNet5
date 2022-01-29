@@ -1,4 +1,5 @@
-﻿using ApiRestAspNet5_01.Model;
+﻿using ApiRestAspNet5_01.Data.VO;
+using ApiRestAspNet5_01.Model;
 using ApiRestAspNet5_01.Services.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -35,14 +36,14 @@ namespace ApiRestAspNet5_01.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Book book)
+        public IActionResult Post([FromBody] BookVO book)
         {
             if (book == null) return BadRequest();
             return Ok(_bookService.Create(book));
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Book book)
+        public IActionResult Put([FromBody] BookVO book)
         {
             if (book == null) return BadRequest();
             return Ok(_bookService.Update(book));

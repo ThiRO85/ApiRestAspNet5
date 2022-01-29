@@ -1,4 +1,6 @@
-﻿using ApiRestAspNet5_01.Model;
+﻿using ApiRestAspNet5_01.Data.Converter.Implementations;
+using ApiRestAspNet5_01.Data.VO;
+using ApiRestAspNet5_01.Model;
 using ApiRestAspNet5_01.Repositories.Generics;
 using ApiRestAspNet5_01.Repository.Implementations;
 using System.Collections.Generic;
@@ -8,30 +10,38 @@ namespace ApiRestAspNet5_01.Services.Implementations
     public class BookServiceImplementation : IBookService
     {
         private readonly IRepository<Book> _repository;
+        private readonly BookConverter _converter;
 
         public BookServiceImplementation(IRepository<Book> repository)
         {
             _repository = repository;
+            _converter = new BookConverter();
         }
 
-        public List<Book> FindAll()
+        public List<BookVO> FindAll()
         {
-            return _repository.FindAll();            
+            var books = _repository.FindAll();
+            return _converter.Parse(books);            
         }
 
-        public Book FindById(long id)
+        public BookVO FindById(long id)
         {
-            return _repository.FindById(id);           
+            var book = _repository.FindById(id);
+            return _converter.Parse(book);           
         }
 
-        public Book Create(Book book)
+        public BookVO Create(BookVO book)
         {
-            return _repository.Create(book);
+            var bookEntity = _converter.Parse(book);
+            bookEntity = _repository.Create(bookEntity);
+            return _converter.Parse(bookEntity);
         }
 
-        public Book Update(Book book)
+        public BookVO Update(BookVO book)
         {
-            return _repository.Update(book);
+            var bookEntity = _converter.Parse(book);
+            bookEntity = _repository.Update(bookEntity);
+            return _converter.Parse(bookEntity);
         }
 
         public void Delete(long id)

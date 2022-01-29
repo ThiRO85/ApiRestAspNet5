@@ -1,4 +1,5 @@
-﻿using ApiRestAspNet5_01.Model;
+﻿using ApiRestAspNet5_01.Data.VO;
+using ApiRestAspNet5_01.Model;
 using ApiRestAspNet5_01.Services.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -35,14 +36,14 @@ namespace ApiRestAspNet5_01.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Person person)
+        public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
             return Ok(_personService.Create(person));
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Person person)
+        public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
             return Ok(_personService.Update(person));
