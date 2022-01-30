@@ -1,4 +1,5 @@
 ﻿using ApiRestAspNet5_01.Data.VO;
+using ApiRestAspNet5_01.Hypermedia.Filters;
 using ApiRestAspNet5_01.Model;
 using ApiRestAspNet5_01.Services.Implementations;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,7 @@ namespace ApiRestAspNet5_01.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             var persons = _personService.FindAll();
@@ -28,6 +30,7 @@ namespace ApiRestAspNet5_01.Controllers
         }
 
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
             var person = _personService.FindById(id);
@@ -36,6 +39,7 @@ namespace ApiRestAspNet5_01.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
@@ -43,6 +47,7 @@ namespace ApiRestAspNet5_01.Controllers
         }
 
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
