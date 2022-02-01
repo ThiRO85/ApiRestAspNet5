@@ -28,6 +28,13 @@ namespace ApiRestAspNet5_01
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddDefaultPolicy(builder => 
+            {
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            }));
+
             services.AddControllers();
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -84,6 +91,8 @@ namespace ApiRestAspNet5_01
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(); //Atenção à posição! 'UseCors' deve ser adicionado após 'UseRouting' e 'UseHttpsRedirection'.
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
