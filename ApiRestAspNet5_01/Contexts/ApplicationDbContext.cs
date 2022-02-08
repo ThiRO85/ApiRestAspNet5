@@ -1,4 +1,5 @@
 ﻿using ApiRestAspNet5_01.Model;
+using ApiRestAspNet5_01.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiRestAspNet5_01.Context
@@ -11,6 +12,7 @@ namespace ApiRestAspNet5_01.Context
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +29,15 @@ namespace ApiRestAspNet5_01.Context
             modelBuilder.Entity<Book>().Property(b => b.LaunchDate).HasColumnName("Launch Date");
             modelBuilder.Entity<Book>().Property(b => b.Price).HasColumnType("decimal(5,2)");
             modelBuilder.Entity<Book>().ToTable("Books");
+
+            modelBuilder.Entity<User>().HasKey(b => b.Id);
+            modelBuilder.Entity<User>().Property(b => b.UserName).IsRequired();
+            modelBuilder.Entity<User>().Property(b => b.UserName).HasColumnName("User Name");
+            modelBuilder.Entity<User>().Property(b => b.Password).IsRequired();
+            modelBuilder.Entity<User>().Property(b => b.FullName).HasColumnName("Full Name");
+            modelBuilder.Entity<User>().Property(b => b.RefreshToken).HasColumnName("Refresh Token");
+            modelBuilder.Entity<User>().Property(b => b.RefreshTokenExpiryTime).HasColumnName("Refresh Token Expiry Time");
+            modelBuilder.Entity<User>().ToTable("Users");
         }
     }
 }

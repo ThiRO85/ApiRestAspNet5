@@ -2,6 +2,7 @@
 using ApiRestAspNet5_01.Hypermedia.Filters;
 using ApiRestAspNet5_01.Model;
 using ApiRestAspNet5_01.Services.Implementations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace ApiRestAspNet5_01.Controllers
 {
     [ApiVersion("1")]
     [ApiController]
+    [Authorize("Bearer")]
     [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonsController : ControllerBase
     {

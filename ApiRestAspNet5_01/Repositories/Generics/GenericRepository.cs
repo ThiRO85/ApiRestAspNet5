@@ -52,6 +52,7 @@ namespace ApiRestAspNet5_01.Repositories.Generics
                 {
                     _context.Entry(result).CurrentValues.SetValues(type);
                     _context.SaveChanges();
+                    return result;
                 }
                 catch (Exception)
                 {
@@ -62,8 +63,6 @@ namespace ApiRestAspNet5_01.Repositories.Generics
             {
                 return null;
             }
-
-            return type;
         }
 
         public void Delete(long id)

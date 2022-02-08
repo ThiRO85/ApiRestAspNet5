@@ -5,8 +5,9 @@ using System.Globalization;
 
 namespace ApiRestAspNet5_01.Controllers
 {
+    [ApiVersion("1")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     public class CalculatorsController : ControllerBase
     {
         //private readonly ILogger<CalculatorController> _logger;
