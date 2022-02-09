@@ -16,5 +16,6 @@ namespace ApiRestAspNet5_01.Model
 
         [MaxLength(50)]
         public string Gender { get; set; }
+        public bool Enable { get; set; } = true;
     }
 }

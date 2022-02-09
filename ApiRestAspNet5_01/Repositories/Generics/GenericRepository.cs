@@ -9,7 +9,7 @@ namespace ApiRestAspNet5_01.Repositories.Generics
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private ApplicationDbContext _context;
+        protected ApplicationDbContext _context;
         private DbSet<T> _dataSet;
 
         public GenericRepository(ApplicationDbContext context)

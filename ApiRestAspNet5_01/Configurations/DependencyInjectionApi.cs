@@ -28,6 +28,7 @@ namespace ApiRestAspNet5_01.Configurations
             //services.AddScoped<IBookRepository, BookRepositoryImplementation>();
             services.AddScoped<ILoginService, LoginServiceImplementation>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
             services.AddApiVersioning();
