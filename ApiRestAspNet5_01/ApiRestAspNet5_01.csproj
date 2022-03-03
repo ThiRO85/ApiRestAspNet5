@@ -21,6 +21,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UploadDir\" />
+  </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES2016</TypeScriptTarget>
     <TypeScriptJSXEmit>React</TypeScriptJSXEmit>

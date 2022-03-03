@@ -11,5 +11,7 @@ namespace ApiRestAspNet5_01.Repositories.Generics
         T Update(T type);
         void Delete(long id);
         bool Exists(long id);
+        List<T> FindWithPagegSearch(string query);
+        int GetCount(string query);
     }
 }

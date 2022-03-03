@@ -24,15 +24,27 @@ namespace ApiRestAspNet5_01.Controllers
             _personService = personService;
         }
 
-        [HttpGet]
+        //[HttpGet]
+        //[ProducesResponseType((200), Type = typeof(List<PersonVO>))]
+        //[ProducesResponseType(204)]
+        //[ProducesResponseType(400)]
+        //[ProducesResponseType(401)]
+        //[TypeFilter(typeof(HyperMediaFilter))]
+        //public IActionResult Get()
+        //{
+        //    var persons = _personService.FindAll();
+        //    return Ok(persons);
+        //}
+
+        [HttpGet("{sortDirection}/{pageSize}/{page}")]
         [ProducesResponseType((200), Type = typeof(List<PersonVO>))]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] string name, string sortDirection, int pageSize, int page)
         {
-            var persons = _personService.FindAll();
+            var persons = _personService.FindWithPagedSearch(name, sortDirection, pageSize, page);
             return Ok(persons);
         }
 
@@ -47,6 +59,19 @@ namespace ApiRestAspNet5_01.Controllers
             var person = _personService.FindById(id);
             if (person == null) return NotFound();
             return Ok(person);
+        }
+
+        [HttpGet("findPersonByName")]
+        [ProducesResponseType((200), Type = typeof(PersonVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult Get([FromQuery] string firstName, [FromQuery] string lastName)
+        {
+            var persons = _personService.FindByName(firstName, lastName);
+            if (persons == null) return NotFound();
+            return Ok(persons);
         }
 
         [HttpPost]

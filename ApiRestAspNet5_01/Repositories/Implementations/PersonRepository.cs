@@ -2,6 +2,7 @@
 using ApiRestAspNet5_01.Model;
 using ApiRestAspNet5_01.Repositories.Generics;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ApiRestAspNet5_01.Repositories.Implementations
@@ -28,6 +29,25 @@ namespace ApiRestAspNet5_01.Repositories.Implementations
                 }
             }
             return user;
+        }
+
+        public List<Person> FindByName(string firstName, string lastName)
+        {
+            if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
+            {
+                return _context.Persons.Where(p =>
+            p.FirstName.Contains(firstName) &&
+            p.LastName.Contains(lastName)).ToList();
+            }
+            else if (string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
+            {
+                return _context.Persons.Where(p => p.LastName.Contains(lastName)).ToList();
+            }
+            else if (!string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName))
+            {
+                return _context.Persons.Where(p => p.FirstName.Contains(firstName)).ToList();
+            }
+            return null;
         }
     }
 }

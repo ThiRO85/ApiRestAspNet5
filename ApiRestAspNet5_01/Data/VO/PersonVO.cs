@@ -21,7 +21,7 @@ namespace ApiRestAspNet5_01.Data.VO
 
         //[JsonPropertyName("testGender")]
         public string Gender { get; set; }
-        public bool Enable { get; set; } = true;
+        public bool Enable { get; set; }
         public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }

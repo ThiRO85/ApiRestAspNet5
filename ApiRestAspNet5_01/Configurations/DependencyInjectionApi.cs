@@ -5,9 +5,11 @@ using ApiRestAspNet5_01.Repositories.Implementations;
 using ApiRestAspNet5_01.Repositories.Interfaces;
 using ApiRestAspNet5_01.Services.Implementations;
 using ApiRestAspNet5_01.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace ApiRestAspNet5_01.Configurations
 {
@@ -20,6 +22,8 @@ namespace ApiRestAspNet5_01.Configurations
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddScoped<SeedingService>();
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             services.AddScoped<IPersonService, PersonServiceImplementation>();
@@ -27,6 +31,7 @@ namespace ApiRestAspNet5_01.Configurations
             //services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
             //services.AddScoped<IBookRepository, BookRepositoryImplementation>();
             services.AddScoped<ILoginService, LoginServiceImplementation>();
+            services.AddScoped<IFileService, FileServiceImplementation>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
